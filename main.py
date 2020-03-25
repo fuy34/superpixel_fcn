@@ -32,7 +32,7 @@ model_names = sorted(name for name in models.__dict__
 dataset_names = sorted(name for name in datasets.__all__)
 
 
-parser = argparse.ArgumentParser(description='PyTorch FlowNet Training on several datasets',
+parser = argparse.ArgumentParser(description='PyTorch SpixelFCN Training on BSDS500',
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
 # ================ training setting ====================
@@ -108,7 +108,7 @@ def main():
         timestamp = datetime.datetime.now().strftime("%y_%m_%d_%H_%M")
     else:
         timestamp = ''
-    save_path = args.savepath + '/' + os.path.join(args.dataset, save_path  +  '_' + timestamp )
+    save_path = os.path.abspath(args.savepath) + '/' + os.path.join(args.dataset, save_path  +  '_' + timestamp )
 
     # ==========  Data loading code ==============
     input_transform = transforms.Compose([

@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 parser = argparse.ArgumentParser()
 parser.add_argument("--dataset", type=str, default="", help="where the filtered dataset is stored")
 parser.add_argument("--dump_root", type=str, default="", help="Where to dump the data")
-parser.add_argument("--b_filter", type=bool, default=False, help="We do not use this in our paper")
+parser.add_argument("--b_filter", type=bool, default=False, help="we do not use this in our paper")
 parser.add_argument("--num_threads", type=int, default=4, help="number of threads to use")
 args = parser.parse_args()
 
@@ -68,7 +68,7 @@ def convert_label(label):
     ct = 0
     for t in np.unique(label).tolist():
         if ct >= 50:
-            print('give up sample becaues label shape is larger than 50: {0}'.format(np.unique(label).shape))
+            print('give up sample because label shape is larger than 50: {0}'.format(np.unique(label).shape))
             break
         else:
             problabel[ :, :, ct] = (label == t) #one hot
@@ -142,24 +142,26 @@ def dump_example(n, n_total, dataType, img_path):
         dump_label_file = os.path.join(dump_dir, '{0}_{1}_label.png' .format(img_name, k))
         cv2.imwrite(dump_label_file, label.astype(np.uint8))
 
-        # save label viz
-        if not os.path.isdir(os.path.join(dump_dir,'label_viz')):
-            os.makedirs(os.path.join(dump_dir,'label_viz'))
-        dump_label_viz = os.path.join(dump_dir, 'label_viz',  '{0}_{1}_label_viz.png'.format(img_name, k))
-        plt.imshow(label)
-        plt.axis('off')
-        plt.gca().xaxis.set_major_locator(plt.NullLocator())
-        plt.gca().yaxis.set_major_locator(plt.NullLocator())
-        plt.subplots_adjust(top=1, bottom=0, left=0, right=1, hspace=0, wspace=0)
-        plt.margins(0, 0)
-        plt.savefig(dump_label_viz,bbox_inches='tight',pad_inches=0)
-        plt.close()
+        # save label viz, uncomment if needed 
+        # if not os.path.isdir(os.path.join(dump_dir,'label_viz')):
+        #     os.makedirs(os.path.join(dump_dir,'label_viz'))
+        # dump_label_viz = os.path.join(dump_dir, 'label_viz',  '{0}_{1}_label_viz.png'.format(img_name, k))
+        # plt.imshow(label)
+        # plt.axis('off')
+        # plt.gca().xaxis.set_major_locator(plt.NullLocator())
+        # plt.gca().yaxis.set_major_locator(plt.NullLocator())
+        # plt.subplots_adjust(top=1, bottom=0, left=0, right=1, hspace=0, wspace=0)
+        # plt.margins(0, 0)
+        # plt.savefig(dump_label_viz,bbox_inches='tight',pad_inches=0)
+        # plt.close()
 
 
 def main():
     datadir = args.dataset
     train_list, val_list = make_dataset(datadir)
 
+    dump_pth = os.path.abspath(args.dump_root)
+    print("data will be saved to {}".format(dump_pth))
     # for debug only
     # for n, train_samp in enumerate(train_list):
     #     dump_example(n, len(train_list),'train', train_samp)
@@ -168,13 +170,13 @@ def main():
     Parallel(n_jobs=args.num_threads)(delayed(dump_example)(n, len(train_list),'train', train_samp) for n, train_samp in enumerate(train_list))
     Parallel(n_jobs=args.num_threads)(delayed(dump_example)(n, len(train_list),'val', val_samp) for n, val_samp in enumerate(val_list))
 
-    with open(args.dump_root + '/train.txt', 'w') as trnf:
-        imfiles = glob(os.path.join(args.dump_root, 'train', '*_img.jpg'))
+    with open(dump_pth + '/train.txt', 'w') as trnf:
+        imfiles = glob(os.path.join(dump_pth, 'train', '*_img.jpg'))
         for frame in imfiles:
             trnf.write(frame + '\n')
 
-    with open(args.dump_root + '/val.txt', 'w') as trnf:
-        imfiles = glob(os.path.join(args.dump_root, 'val', '*_img.jpg'))
+    with open(dump_pth+ '/val.txt', 'w') as trnf:
+        imfiles = glob(os.path.join(dump_pth, 'val', '*_img.jpg'))
         for frame in imfiles:
             trnf.write(frame + '\n')
 

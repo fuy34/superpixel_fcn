@@ -32,8 +32,8 @@ To generate training and test dataset, please first download the data from the o
 and extract it to  ```<BSDS_DIR>```. Then, run 
 ```
 cd data_preprocessing
-python pre_processing_bsd500.py --dataset=<BSDS_DIR> --dump_root=<DUMP_DIR>
-python pre_processing_bsd500_ori.py --dataset=<BSDS_DIR> --dump_root=<DUMP_DIR>
+python pre_process_bsd500.py --dataset=<BSDS_DIR> --dump_root=<DUMP_DIR>
+python pre_process_bsd500_ori_sz.py --dataset=<BSDS_DIR> --dump_root=<DUMP_DIR>
 cd ..
 ```
 The code will generate three folders under the ```<DUMP_DIR>```, named as ```/train```, ```/val```, and ```/test```, and three ```.txt``` files 
