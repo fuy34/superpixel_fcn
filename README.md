@@ -2,7 +2,7 @@
 
 This is is a PyTorch implementation of the superpixel segmentation network introduced in our CVPR-20 paper:
 
-[Superpixel Segmentation with Fully Convolutional Network](http://personal.psu.edu/fuy34)
+[Superpixel Segmentation with Fully Convolutional Network](https://arxiv.org/abs/2003.12929)
 
 [Fengting Yang](http://personal.psu.edu/fuy34/), [Qian Sun](https://www.linkedin.com/in/qiansuun), [Hailin Jin](https://research.adobe.com/person/hailin-jin/), and [Zihan Zhou](https://faculty.ist.psu.edu/zzhou/Home.html)
 
