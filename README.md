@@ -4,9 +4,11 @@ This is is a PyTorch implementation of the superpixel segmentation network intro
 
 [Superpixel Segmentation with Fully Convolutional Network](https://arxiv.org/abs/2003.12929)
 
-[Fengting Yang](http://personal.psu.edu/fuy34/), [Qian Sun](https://www.linkedin.com/in/qiansuun), [Hailin Jin](https://research.adobe.com/person/hailin-jin/), and [Zihan Zhou](https://faculty.ist.psu.edu/zzhou/Home.html)
+[Fengting Yang](http://fuy34.github.io/), [Qian Sun](https://www.linkedin.com/in/qiansuun), [Hailin Jin](https://research.adobe.com/person/hailin-jin/), and [Zihan Zhou](https://zihan-z.github.io/)
 
-Please contact Fengting Yang (fuy34bkup@gmail.com) if you have any questions. The stereo application is available in our 
+Please contact [Fengting Yang](http://fuy34.github.io/) (fuy34bkup@gmail.com) if you have any questions. 
+
+**NEWS**: The stereo application is available in our 
 [SPPSMNet](https://github.com/fuy34/SPPSMStereo) repository. 
 
 ## Prerequisites
